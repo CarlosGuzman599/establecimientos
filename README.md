@@ -1,0 +1,2 @@
+# establecimientos
+Comercio local
