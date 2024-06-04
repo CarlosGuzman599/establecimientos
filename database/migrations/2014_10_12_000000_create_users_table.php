@@ -14,9 +14,15 @@ class CreateUsersTable extends Migration
     public function up()
     {
 
+        Schema::create('state_users', function (Blueprint $table) {
+            $table->id();
+            $table->string('descripcion');
+            $table->timestamps();
+        });
+
         Schema::create('tipo_users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('nombre');
             $table->timestamps();
         });
 
@@ -32,6 +38,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone')->unique();
+            $table->foreignId('state_users_id')->default(0)->references('id')->on('state_users');
             $table->foreignId('localidad_users_id')->default(2)->references('id')->on('localidades');
             $table->foreignId('tipo_users_id')->default(3)->references('id')->on('tipo_users');
             $table->timestamp('email_verified_at')->nullable();
@@ -51,5 +58,6 @@ class CreateUsersTable extends Migration
         Schema::dropIfExists('users');
         Schema::dropIfExists('tipo_users');
         Schema::dropIfExists('localidades');
+        Schema::dropIfExists('state_users');
     }
 }

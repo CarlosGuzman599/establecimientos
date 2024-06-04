@@ -13,5 +13,9 @@
         "postcss": "^8.1.14",
         "sass": "^1.56.1",
         "vite": "^4.0.0"
+    },
+    "dependencies": {
+        "datatables.net-dt": "^2.0.8",
+        "jquery": "^3.7.1"
     }
 }
