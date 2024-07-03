@@ -29,6 +29,5 @@ class HomeController extends Controller
             $establecimientos_owner = Establecimiento::where('users_id', Auth::id())->get();
             return view('home', compact('establecimientos_owner'));
         }
-        
     }
 }

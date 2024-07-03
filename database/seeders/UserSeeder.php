@@ -22,19 +22,20 @@ class UserSeeder extends Seeder
 
 
         TipoUser::create([
-            'nombre' => 'admin'//1
+            'nombre' => 'Administrador'//1
         ]);
 
         TipoUser::create([
-            'nombre' => 'seller'//2
+            'nombre' => 'Vendedor'//2
         ]);
 
         TipoUser::create([
-            'nombre' => 'client'//3
+            'nombre' => 'Cliente'//3
         ]);
 
         User::create([
             'name'=>'Carlos Guzman Encarnacion',
+            'img'=>'/storage/img/avatar/avatar_support.png',
             'email'=>'carlilloz.599@gmail.com',
             'phone'=>'3411785798',
             'localidad_users_id' => 1,
@@ -45,9 +46,10 @@ class UserSeeder extends Seeder
             'created_at'=>Carbon::now(),
             'updated_at'=>Carbon::now()
         ]);
-        
+
         User::create([
             'name'=>'Mayra Azucena Ignacio Encarnacion',
+            'img'=>'/storage/img/avatar/avatar_female_003.png',
             'email'=>'gacita_bella@gmail.com',
             'phone'=>'3411785799',
             'localidad_users_id' => 4,

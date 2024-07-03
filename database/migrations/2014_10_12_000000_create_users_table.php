@@ -36,9 +36,10 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('img');
             $table->string('email')->unique();
             $table->string('phone')->unique();
-            $table->foreignId('state_users_id')->default(0)->references('id')->on('state_users');
+            $table->foreignId('state_users_id')->default(1)->references('id')->on('state_users');
             $table->foreignId('localidad_users_id')->default(2)->references('id')->on('localidades');
             $table->foreignId('tipo_users_id')->default(3)->references('id')->on('tipo_users');
             $table->timestamp('email_verified_at')->nullable();

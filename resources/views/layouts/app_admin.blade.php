@@ -65,7 +65,7 @@
                                     <a href="{{ route('admin.users.index') }}" class="dropdown-item text-center ch-grey"><i class="fa-solid fa-users"></i> Usuarios</a>
                                     <a href="" class="dropdown-item text-center ch-grey"><i class="fa-solid fa-store"></i> Establecimientos</a>
                                     <a href="" class="dropdown-item text-center ch-grey"><i class="fa-regular fa-newspaper"></i> Anuncios</a>
-                                    <a href="" class="dropdown-item text-center ch-grey"><i class="fa-solid fa-gear"></i> Ajustes</a> 
+                                    <a href="" class="dropdown-item text-center ch-grey"><i class="fa-solid fa-gear"></i> Ajustes</a>
 
                                     <a class="dropdown-item text-center bg-red fw-bold" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

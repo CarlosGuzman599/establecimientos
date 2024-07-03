@@ -39,4 +39,10 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/anuncio_establecimiento/destroy/{anuncio}', [App\Http\Controllers\AnunciosController::class, 'destroy'])->name('anuncio_establecimiento.destroy');
     */
     Route::get('/admin/users/index',[\App\Http\Controllers\UserController::class, 'index'])->name('admin.users.index');
+
+    //USUARIOS
+    Route::get('/users/{id}',[\App\Http\Controllers\UserController::class, 'show'])->name('users.show');
+    Route::get('/users/edit/{id}', [\App\Http\Controllers\UserController::class, 'edit'])->name('users.edit');
+    Route::put('/users/update/{id}', [\App\Http\Controllers\UserController::class, 'update'])->name('users.update');
+    Route::delete('/users/destroy/{id}', [\App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
 });
