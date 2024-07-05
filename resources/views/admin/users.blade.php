@@ -34,8 +34,6 @@
                         <td class="col text-center">{{$user->tipo_user['nombre']}}</td>
                         <td class="col text-center m-5" id="{{  $user->id }}">
                             <a href="{{ route('users.edit', $user->id) }}"><i class="col fa-regular fa-pen-to-square c-orange"></i></a>
-                            
-                            <i class="col fa-regular fa-trash-can c-red"></i>
                             <i class="col fa-regular fa-eye c-green"></i>
                         </td>
                     </tr>

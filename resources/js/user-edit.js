@@ -61,7 +61,7 @@ $(document).ready(function(){
                             text: "Eminimado permanente.",
                             icon: "success"
                         });
-                        window.location.href = "/home";
+                        window.location.href = "/admin/users/index";
                     }else{
                         Swal.fire({
                             icon: "error",

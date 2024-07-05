@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('scripts')
-    <script src="{{ asset('js/establecimientos_create.js') }}" defer></script>
+@section('js')
+    @vite(['resources/js/user-create.js'])
 @endsection
 
 @section('content')

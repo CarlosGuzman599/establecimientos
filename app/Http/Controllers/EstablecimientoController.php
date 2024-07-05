@@ -10,9 +10,9 @@ use App\Models\Categorias;
 use App\Models\Localidades;
 use Illuminate\Http\Request;
 use App\Models\Establecimiento;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class EstablecimientoController extends Controller
 {
@@ -67,15 +67,14 @@ class EstablecimientoController extends Controller
         ]);
 
         if ( isset($request['logo']) ){
-            $url_logo = $request->file('logo')->store('public/logos');
-            $url = Storage::url($url_logo);
-
-            DB::table('establecimientos')->insert([
+            $request = app('request');
+            $file = $request->file('logo');
+            Establecimiento::create([
                 'nombre' => $request['nombre'],
                 'users_id' => $request['users_id'],
                 'categorias_id' => $request['categorias_id'],
                 'localidades_id' => $request['localidades_id'],
-                'logo' => $url,
+                'logo' => '/storage/img/logos/'.((int)Establecimiento::latest('id')->first()->id + 1).".".$file->getClientOriginalExtension(),
                 'protection' => $request['protection'],
                 'delivery' => $request['delivery'],
                 'direccion' => $request['direccion'],
@@ -88,6 +87,11 @@ class EstablecimientoController extends Controller
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
             ]); 
+
+            $newFileName = ((int)Establecimiento::latest('id')->first()->id).".".$file->getClientOriginalExtension();
+            $ruta = public_path('/storage/img/logos/'.$newFileName);
+            Image::make($file->getRealPath())->fit(400, 400)->save($ruta,72);
+
         }else{
             Establecimiento::create($request->all());
         }
@@ -153,7 +157,7 @@ class EstablecimientoController extends Controller
         ]);
 
         if ( isset($request['logo']) ){
-            $url_logo = $request->file('logo')->store('public/logos');
+            $url_logo = $request->file('logo')->store('public/img/logos');
             $url = Storage::url($url_logo);
 
             if(!$establecimiento->logo==null){

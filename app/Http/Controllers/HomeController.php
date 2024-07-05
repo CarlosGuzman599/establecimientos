@@ -24,7 +24,7 @@ class HomeController extends Controller
     public function index()
     {
         if(Auth::id() == 1){
-            return view('admin.index');
+            return view('admin.home');
         }else{
             $establecimientos_owner = Establecimiento::where('users_id', Auth::id())->get();
             return view('home', compact('establecimientos_owner'));
