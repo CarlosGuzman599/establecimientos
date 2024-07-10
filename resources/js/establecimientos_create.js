@@ -5,7 +5,7 @@ $(document).ready(function(){
     if($('#horario').val() == ''){
         $('#horario').val('{"day0": {"state0":"","open0":"","close0":""},"day1": {"state1":"","open1":"","close1":""},"day2": {"state2":"","open2":"","close2":""},"day3": {"state3":"","open3":"","close3":""},"day4": {"state4":"","open4":"","close4":""},"day5": {"state5":"","open5":"","close5":""},"day6": {"state6":"","open6":"","close6":""}}')
     }else{
-        data_time=JSON.parse($('#horario').val());
+        let data_time=JSON.parse($('#horario').val());
         helper_set_values_days(0, data_time.day0.state0, data_time.day0.open0, data_time.day0.close0);
         helper_set_values_days(1, data_time.day1.state1, data_time.day1.open1, data_time.day1.close1);
         helper_set_values_days(2, data_time.day2.state2, data_time.day2.open2, data_time.day2.close2);
@@ -25,9 +25,8 @@ $(document).ready(function(){
         $('#close'+numberDay).val(closeValue);
     }
 
-    //set a listener to checkbox component
     $(".check").click(function(){
-        value_id=$(this).attr("id").substring(3);
+        let value_id = $(this).attr("id").substring(3);
         if( $(this).is(':checked') ) {
             $('#open'+value_id).removeAttr('disabled');
             $('#close'+value_id).removeAttr('disabled');
@@ -37,10 +36,9 @@ $(document).ready(function(){
         }
 	});
 
-    //set a listener to update the times
     $(".update-time").on('change',function(){
-        value_id=$(this).attr("id");
-        data_time=JSON.parse($('#horario').val());
+        let value_id = $(this).attr("id");
+        let data_time = JSON.parse($('#horario').val());
 
         switch (value_id) {
             case "day0":

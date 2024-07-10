@@ -20,10 +20,9 @@ class CreateEstablecimientosTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('status', function (Blueprint $table) {
+        Schema::create('state', function (Blueprint $table) {
             $table->id();
             $table->string('descripcion');
-            $table->string('slug');
             $table->timestamps();
         });
 
@@ -40,6 +39,7 @@ class CreateEstablecimientosTable extends Migration
             $table->foreignId('users_id')->references('id')->on('users');
             $table->foreignId('categorias_id')->references('id')->on('categorias');
             $table->foreignId('localidades_id')->references('id')->on('localidades');
+            $table->foreignId('states_id')->default(1)->references('id')->on('state');
             $table->string('logo')->nullable();
             $table->char('protection');
             $table->char('delivery');

@@ -1,13 +1,11 @@
 <?php
 
 namespace Database\Seeders;
-
-use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
-class StatusSeeder extends Seeder
+class StateSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,25 +14,24 @@ class StatusSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('status')->insert([
+
+        DB::table('state')->insert([
             'descripcion'=>'Activo',
-            'slug'=>Str::slug('activo'),
             'created_at'=>Carbon::now(),
             'updated_at'=>Carbon::now()
         ]);
 
-        DB::table('status')->insert([
+        DB::table('state')->insert([
             'descripcion'=>'Inactivo',
-            'slug'=>Str::slug('inactivo'),
             'created_at'=>Carbon::now(),
             'updated_at'=>Carbon::now()
         ]);
 
-        DB::table('status')->insert([
+        DB::table('state')->insert([
             'descripcion'=>'Bloqueado',
-            'slug'=>Str::slug('blockeado'),
             'created_at'=>Carbon::now(),
             'updated_at'=>Carbon::now()
         ]);
+        
     }
 }

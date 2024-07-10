@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
-@section('scripts')
-    <script src="{{ asset('js/establecimientos_create.js') }}" defer></script>
+@section('js')
+    @vite(['resources/js/establecimientos_create.js'])
+    @vite(['resources/js/establecimientos_update.js'])
 @endsection
 
 @section('content')
@@ -36,9 +37,9 @@
                     id="telefono"
                     type="tel"
                     class="form-control @error('telefono') is-invalid @enderror "
-                    placeholder="Telefono	del Establecimiento"
+                    placeholder="Telefono del Establecimiento"
                     name="telefono"
-                    value="{{ old('telefono',Auth::user()->phone, $establecimiento->telefono) }}"
+                    value="{{ old('telefono', $establecimiento->telefono) }}"
                     >
     
                     @error('telefono')
@@ -333,7 +334,7 @@
                 </fieldset>
 
                 <div class="row">
-                    <a class="col m-4 btn btn-danger" href="{{route('home')}}">Cancelar</a>
+                    <button id="{{ $establecimiento->id }}" class="col m-4 btn btn-danger btn-delete"><i class="fa-solid fa-triangle-exclamation"></i> Eliminar</button>
                     <button type="submit" class="col m-4 btn btn-primary">Save</button>
                 </div>
                 

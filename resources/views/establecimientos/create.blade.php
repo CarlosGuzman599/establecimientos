@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('js')
-    @vite(['resources/js/user-create.js'])
+    @vite(['resources/js/establecimientos_create.js'])
 @endsection
 
 @section('content')

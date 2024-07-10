@@ -28,11 +28,11 @@ Route::middleware(['auth'])->group(function () {
     //Route::delete('/establecimiento/destroy/{establecimiento}', [App\Http\Controllers\EstablecimientoController::class, 'destroy'])->name('establecimiento.destroy');
     Route::get('/establecimiento/edit/{establecimiento}', [App\Http\Controllers\EstablecimientoController::class, 'edit'])->name('establecimiento.edit');
     Route::get('/establecimiento/show/{establecimiento}', [App\Http\Controllers\EstablecimientoController::class, 'show'])->name('establecimiento.show');
-    //Route::put('/establecimiento/update/{id}', [App\Http\Controllers\EstablecimientoController::class, 'update'])->name('establecimiento.update');
+    Route::put('/establecimiento/update/{id}', [App\Http\Controllers\EstablecimientoController::class, 'update'])->name('establecimiento.update');
     //Route::get('/establecimiento/index', [App\Http\Controllers\EstablecimientoController::class, 'index'])->name('establecimiento.index');
 
     //ANUNCIOS
-    //Route::get('/anuncio_establecimiento/create/{id}', [App\Http\Controllers\AnunciosController::class, 'anuncio_establecimiento_create'])->name('anuncio_establecimiento.create');
+    Route::get('/anuncio_establecimiento/create/{id}', [App\Http\Controllers\AnunciosController::class, 'anuncio_establecimiento_create'])->name('anuncio_establecimiento.create');
     //Route::post('/anuncio_establecimiento/store', [App\Http\Controllers\AnunciosController::class, 'store'])->name('anuncio_establecimiento.store');
     //Route::get('/anuncio_establecimiento/edit/{anuncio}', [App\Http\Controllers\AnunciosController::class, 'edit'])->name('anuncio_establecimiento.edit');
     //Route::put('/anuncio_establecimiento/update/{id}', [App\Http\Controllers\AnunciosController::class, 'update'])->name('anuncio_establecimiento.update');

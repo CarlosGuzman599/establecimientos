@@ -20,7 +20,7 @@
                         @csrf
 
                         <div class="form-group col">
-                            <label for="email" class="col-form-label text-md-right">Celular</label>
+                            <label for="phone" class="col-form-label text-md-right">Celular</label>
                             <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
                             @error('phone')
                                 <span class="invalid-feedback" role="alert">

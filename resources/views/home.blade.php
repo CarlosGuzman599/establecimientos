@@ -35,9 +35,15 @@
           </div>
 
           <div class="col-4 row ml-1" name="{{$eo->nombre}}" id="{{$eo->id}}">
-            <a href="{{ route('establecimiento.show', $eo->id) }}" class="btn-function no-hover"><img class="btn-function" src="/storage/img/icons/tags.png"></a>
-            <a href="{{ route('establecimiento.edit', $eo->id) }}" class="btn-function no-hover"><img class="btn-function" src="/storage/img/icons/edit.png"></a>
-            <img class="btn-function delete-establecimiento" src="/storage/img/icons/delete.png">
+
+            @if ($eo->states_id != 1)
+              <p class="bussine-fail text-center">Establecimiento inactivo/bloqueado contacte al administrador</p>
+            @else
+              <a href="{{ route('establecimiento.show', $eo->id) }}" class="btn-function no-hover col m-auto"><i class="fa-solid fa-eye"></i></a>
+              <a href="{{ route('establecimiento.edit', $eo->id) }}" class="btn-function no-hover col m-auto"><i class="fa-regular fa-pen-to-square c-orange"></i></a>
+            @endif
+
+            
           </div>
 
         </div>

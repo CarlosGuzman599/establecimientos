@@ -64,7 +64,7 @@ class RegisterController extends Controller
                 'name' => ['required', 'string', 'max:255', 'regex:([a-zA-Z] [a-zA-Z]*)'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'phone' => ['required', 'string', 'size:10', 'unique:users'],
-                'img' => ['required', 'photo' => 'mimes:jpg,bmp,png', File::image()->max(5 * 1024)],
+                'img' => ['required', 'photo' => 'mimes:jpg,bmp,png', File::image()->max(5 * 5120)],
                 'localidad_users_id' => ['required'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
             ],['name.regex' => 'Proporcione segundo nombre o apellido']);

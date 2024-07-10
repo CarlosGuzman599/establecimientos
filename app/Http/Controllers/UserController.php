@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
+use Illuminate\Validation\Rules\File;
 
 use function League\Flysystem\Local\unlink;
 
@@ -86,7 +87,6 @@ class UserController extends Controller
     public function update(Request $request, $id){
         $user =  User::find($id);
         $validation = [];
-        $old_img = false;
 
         if( $request['name'] != $user->name ){
             $validation['name'] = ['required', 'string', 'max:255', 'regex:([a-zA-Z] [a-zA-Z]*)'];
@@ -100,14 +100,12 @@ class UserController extends Controller
 
         if(  $request['img'] != NULL && $request['img'] != $user->img ){
             $validation['img'] = ['required'];
-            $user->img = $request['img'];
 
             if(str_contains($request['img'], 'avatar')){
                 $user->img = '/storage/img/avatar/'.$request['img'].".png";
             }else{
-                //return dd($request);
+                $validation['img'] = ['required', 'photo' => 'mimes:jpg,bmp,png', File::image()->max(5 * 5120)];
                 $file = $request->file('img');
-                $old_img = $user->img;
                 $user->img = '/storage/img/users/'.$id.".".$file->getClientOriginalExtension();
             }
 
