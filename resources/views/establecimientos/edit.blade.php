@@ -96,7 +96,7 @@
                         <p class="bussine-detail">Imagen actual</p>
 
                         @if ($establecimiento->logo == null)
-                            <img class="bussine-img" src="/storage/logos/default/{{$establecimiento->categorias_id}}.png">
+                            <img class="bussine-img" src="/storage/img/logos/default/{{$establecimiento->categorias_id}}.png">
                         @else
                             <img class="bussine-img" src="{{$establecimiento->logo}}" alt="/storage/logos/default.png">
                         @endif

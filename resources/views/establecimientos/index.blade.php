@@ -18,14 +18,5 @@
 @endsection
 
 
-@section('scripts')
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-  integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-  crossorigin=""></script>
 
-  <script src="https://unpkg.com/esri-leaflet" defer></script>
-  <script src="https://unpkg.com/esri-leaflet-geocoder" defer></script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/dropzone.min.js" integrity="sha256-OG/103wXh6XINV06JTPspzNgKNa/jnP1LjPP5Y3XQDY=" crossorigin="anonymous" defer></script>
-@endsection
 

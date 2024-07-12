@@ -33,9 +33,9 @@ Route::middleware(['auth'])->group(function () {
 
     //ANUNCIOS
     Route::get('/anuncio_establecimiento/create/{id}', [App\Http\Controllers\AnunciosController::class, 'anuncio_establecimiento_create'])->name('anuncio_establecimiento.create');
-    //Route::post('/anuncio_establecimiento/store', [App\Http\Controllers\AnunciosController::class, 'store'])->name('anuncio_establecimiento.store');
-    //Route::get('/anuncio_establecimiento/edit/{anuncio}', [App\Http\Controllers\AnunciosController::class, 'edit'])->name('anuncio_establecimiento.edit');
-    //Route::put('/anuncio_establecimiento/update/{id}', [App\Http\Controllers\AnunciosController::class, 'update'])->name('anuncio_establecimiento.update');
+    Route::post('/anuncio_establecimiento/store', [App\Http\Controllers\AnunciosController::class, 'store'])->name('anuncio_establecimiento.store');
+    Route::get('/anuncio_establecimiento/edit/{anuncio}', [App\Http\Controllers\AnunciosController::class, 'edit'])->name('anuncio_establecimiento.edit');
+    Route::put('/anuncio_establecimiento/update/{id}', [App\Http\Controllers\AnunciosController::class, 'update'])->name('anuncio_establecimiento.update');
     //Route::delete('/anuncio_establecimiento/destroy/{anuncio}', [App\Http\Controllers\AnunciosController::class, 'destroy'])->name('anuncio_establecimiento.destroy');
     
 

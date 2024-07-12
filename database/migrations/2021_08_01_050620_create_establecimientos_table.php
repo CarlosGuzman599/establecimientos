@@ -61,9 +61,10 @@ class CreateEstablecimientosTable extends Migration
             $table->foreignId('categorias_id')->nullable()->references('id')->on('categorias');
             $table->foreignId('localidades_id')->nullable()->references('id')->on('localidades');
             $table->foreignId('tiempos_id')->nullable()->references('id')->on('tiempos');
+            $table->foreignId('states_id')->default(1)->references('id')->on('state');
             $table->string('img')->nullable();
             $table->text('descripcion');
-            $table->text('direccion');
+            $table->text('direccion')->nullable();
             $table->string('lat')->nullable();
             $table->string('lng')->nullable();
             $table->timestamps();

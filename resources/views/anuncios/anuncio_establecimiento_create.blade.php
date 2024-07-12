@@ -23,9 +23,9 @@
                     <div class="col-2 mb-1">
 
                         @if ($establecimiento->logo == null)
-                            <img class="bussine-img" src="/storage/logos/default/{{$establecimiento->categorias_id}}.png">
+                            <img class="bussine-img" src="/storage/img/logos/default/{{$establecimiento->categorias_id}}.png">
                         @else
-                            <img class="bussine-img" src="{{$establecimiento->logo}}" alt="/storage/logos/default.png">
+                            <img class="bussine-img" src="{{$establecimiento->logo}}" alt="/storage/img/logos/default.png">
                         @endif
 
                     </div>

@@ -71,7 +71,7 @@ class EstablecimientoController extends Controller
                 'users_id' => $request['users_id'],
                 'categorias_id' => $request['categorias_id'],
                 'localidades_id' => $request['localidades_id'],
-                'logo' => '/storage/img/logos/'.((int)Establecimiento::latest('id')->first()->id + 1)."0.".$file->getClientOriginalExtension(),
+                'logo' => '/storage/img/logos/'.((int)Establecimiento::latest('id')->first()->id + 1).".".$file->getClientOriginalExtension(),
                 'protection' => $request['protection'],
                 'delivery' => $request['delivery'],
                 'direccion' => $request['direccion'],
@@ -81,8 +81,6 @@ class EstablecimientoController extends Controller
                 'telefono' => $request['telefono'],
                 'descripcion' => $request['descripcion'],
                 'horario' => $request['horario'],
-                'created_at'=>Carbon::now(),
-                'updated_at'=>Carbon::now()
             ]); 
 
             $newFileName = ((int)Establecimiento::latest('id')->first()->id).".".$file->getClientOriginalExtension();

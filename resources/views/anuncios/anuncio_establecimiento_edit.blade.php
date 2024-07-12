@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('scripts')
-    
+@section('js')
+    @vite(['resources/js/anuncio_establecimiento_update.js'])
 @endsection
 
 @section('content')
@@ -23,7 +23,7 @@
                     <div class="col-2 mb-1">
 
                         @if ($establecimiento->logo == null)
-                            <img class="bussine-img" src="/storage/logos/default/{{$establecimiento->categorias_id}}.png">
+                            <img class="bussine-img" src="/storage/img/logos/default/{{$establecimiento->categorias_id}}.png">
                         @else
                             <img class="bussine-img" src="{{$establecimiento->logo}}" alt="/storage/logos/default.png">
                         @endif
@@ -130,7 +130,7 @@
                 </div>
 
                 <div class="row">
-                    <a class="col m-4 btn btn-danger" href="{{ route('establecimiento.show', $establecimiento->id) }}">Cancelar</a>
+                    <button id="{{ $anuncio->id }}" class="col m-4 btn btn-danger btn-delete"><i class="fa-solid fa-triangle-exclamation"></i> Eliminar</button>
                     <button type="submit" class="col m-4 btn btn-primary" value="update">Save</button>
                 </div>
                 
