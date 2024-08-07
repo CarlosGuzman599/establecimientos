@@ -328,13 +328,43 @@
                         @enderror
                     </div>
 
-                    <input type="hidden" id="users_id" name="users_id" value="{{Auth::user()->id}}">
+                    <input type="hidden" id="users_id" name="users_id" value="{{$user->id}}">
                     <input type="hidden" id="lat" name="lat" value="0000000">
                     <input type="hidden" id="lng" name="lng" value="0000000">
                 </fieldset>
 
                 <div class="row">
-                    <button id="{{ $establecimiento->id }}" class="col m-4 btn btn-danger btn-delete"><i class="fa-solid fa-triangle-exclamation"></i> Eliminar</button>
+
+                    @if (Auth::user()->tipo_users_id == 1)
+                        <div class="form-group">
+                            <label for="localidad">Estado</label>
+            
+                            <select
+                                class="form-control @error('states_id') is-invalid @enderror"
+                                name="states_id"
+                                id="states_id"
+                            >
+                                <option value="" selected disabled>-- Seleccione --</option>
+            
+                                @foreach ($states as $state)
+                                <option
+                                    class="text-capitalize"
+                                    value="{{$state->id}}"
+                                    {{ old('states_id', $establecimiento->states_id) == $state->id  ? 'selected' : '' }}
+                                >{{$state->descripcion}}</option>
+            
+                                @endforeach
+                            </select>
+                            @error('states_id')
+                                <div class="invalid-feedback">
+                                {{$message}}
+                                </div>
+                            @enderror
+                        </div>
+                    @else
+                        <button id="{{ $establecimiento->id }}" class="col m-4 btn btn-danger btn-delete"><i class="fa-solid fa-triangle-exclamation"></i> Eliminar</button>
+                    @endif
+
                     <button type="submit" class="col m-4 btn btn-primary">Save</button>
                 </div>
                 

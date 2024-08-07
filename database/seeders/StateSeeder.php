@@ -15,19 +15,19 @@ class StateSeeder extends Seeder
     public function run()
     {
 
-        DB::table('state')->insert([
+        DB::table('states')->insert([
             'descripcion'=>'Activo',
             'created_at'=>Carbon::now(),
             'updated_at'=>Carbon::now()
         ]);
 
-        DB::table('state')->insert([
+        DB::table('states')->insert([
             'descripcion'=>'Inactivo',
             'created_at'=>Carbon::now(),
             'updated_at'=>Carbon::now()
         ]);
 
-        DB::table('state')->insert([
+        DB::table('states')->insert([
             'descripcion'=>'Bloqueado',
             'created_at'=>Carbon::now(),
             'updated_at'=>Carbon::now()

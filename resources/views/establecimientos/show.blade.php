@@ -17,7 +17,6 @@
 
 
       <div class="mt-2 row justify-content-end container">
-        <a href="{{ route('home') }}" class="no-hover mx-5"><img class="btn-home" src="/storage/img/icons/home.png"></a>
         <a class="btn-personal btn-primery-personal shadow-lg" href="{{ route('anuncio_establecimiento.create', $establecimiento->id) }}">Agregar nuevo</a>
       </div>
 

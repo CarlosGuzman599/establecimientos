@@ -56,4 +56,12 @@ class Anuncios extends Model
     public function localidad(){
         return $this->belongsTo(Localidades::class, 'localidades_id', 'id');
     }
+
+    public function state(){
+        return $this->belongsTo(State::class, 'states_id', 'id');
+    }
+
+    public function categoria(){
+        return $this->belongsTo(Categorias::class, 'categorias_id', 'id');
+    }
 }

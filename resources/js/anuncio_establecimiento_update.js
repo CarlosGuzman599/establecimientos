@@ -14,31 +14,31 @@ $(document).ready(function(){
             cancelButtonColor: "#d33",
             confirmButtonText: "Si, Eliminar!"
           }).then((result) => {
-            let id = $(this).attr('id');
-            $.ajax({
-                type: "put",
-                url: `/anuncio_establecimiento/update/${id}`,
-                data: {_token: $('meta[name="csrf-token"]').attr('content')},
-                success: function (response) {
-                    if(response.status == 200){
-                        Swal.fire({
-                            title: "Eliminado!",
-                            text: "Para reavilitar solicite al administrador.",
-                            icon: "success"
-                        });
-                        window.location.href = "/home";
-                    }else{
-                        Swal.fire({
-                            icon: "error",
-                            title: "Contactar administrador",
-                            text: response,
-                        });
+            if (result.isConfirmed) {
+                let id = $(this).attr('id');
+                $.ajax({
+                    type: "put",
+                    url: `/anuncio_establecimiento/update/${id}`,
+                    data: {_token: $('meta[name="csrf-token"]').attr('content')},
+                    success: function (response) {
+                        if(response.status == 200){
+                            Swal.fire({
+                                title: "Eliminado!",
+                                text: "Para reavilitar solicite al administrador.",
+                                icon: "success"
+                            });
+                            window.location.href = "/home";
+                        }else{
+                            Swal.fire({
+                                icon: "error",
+                                title: "Contactar administrador",
+                                text: response,
+                            });
+                        }
                     }
-                }
-            });
+                });
+            }
         });
 	});
-     
-
 
 });

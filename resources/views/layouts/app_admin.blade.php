@@ -92,13 +92,13 @@
                     </span>
                     <span class="col d-block">Usuarios</span>
                 </a>
-                <a href="" class="col rounded text-center m-1 p-1 access access-2">
+                <a href="{{ route('establecimiento.index') }}" class="col rounded text-center m-1 p-1 access access-2">
                     <span class="col d-block">
                         <i class="fa-solid fa-store"></i>
                     </span>
                     <span class="col d-block">Establecimientos</span>
                 </a>
-                <a href="" class="col rounded text-center m-1 p-1 access access-3">
+                <a href="{{ route('anuncio_establecimiento.index') }}" class="col rounded text-center m-1 p-1 access access-3">
                     <span class="col d-block">
                         <i class="fa-regular fa-newspaper"></i>
                     </span>

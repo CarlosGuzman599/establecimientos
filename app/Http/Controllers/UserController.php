@@ -21,12 +21,9 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        if(Auth::id() == 1){
+        if(Auth::user()->tipo_users_id == 1){
             $users = User::all();
-            $localidades = Localidades::all();
-            $state_user = StateUser::all();
-            $tipo_users = TipoUser::all();
-            return view('admin.users', compact('users', 'localidades', 'state_user', 'tipo_users'));
+            return view('admin.users', compact('users'));
         }else{
             abort(404);
         }
@@ -143,7 +140,10 @@ class UserController extends Controller
             Image::make($file->getRealPath())->fit(400, 400)->save($ruta,72);
         }
 
-        return redirect('/admin/users/index');
+        if(Auth::user()->tipo_users_id == 1){
+            $users = User::all();
+            return view('admin.users', compact('users'));
+        }
 
     }
 

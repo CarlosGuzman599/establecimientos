@@ -20,7 +20,7 @@ class CreateEstablecimientosTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('state', function (Blueprint $table) {
+        Schema::create('states', function (Blueprint $table) {
             $table->id();
             $table->string('descripcion');
             $table->timestamps();
@@ -39,7 +39,7 @@ class CreateEstablecimientosTable extends Migration
             $table->foreignId('users_id')->references('id')->on('users');
             $table->foreignId('categorias_id')->references('id')->on('categorias');
             $table->foreignId('localidades_id')->references('id')->on('localidades');
-            $table->foreignId('states_id')->default(1)->references('id')->on('state');
+            $table->foreignId('states_id')->default(1)->references('id')->on('states');
             $table->string('logo')->nullable();
             $table->char('protection');
             $table->char('delivery');
@@ -61,7 +61,7 @@ class CreateEstablecimientosTable extends Migration
             $table->foreignId('categorias_id')->nullable()->references('id')->on('categorias');
             $table->foreignId('localidades_id')->nullable()->references('id')->on('localidades');
             $table->foreignId('tiempos_id')->nullable()->references('id')->on('tiempos');
-            $table->foreignId('states_id')->default(1)->references('id')->on('state');
+            $table->foreignId('states_id')->default(1)->references('id')->on('states');
             $table->string('img')->nullable();
             $table->text('descripcion');
             $table->text('direccion')->nullable();

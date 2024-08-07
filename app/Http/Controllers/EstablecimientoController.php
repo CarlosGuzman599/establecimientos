@@ -10,6 +10,8 @@ use App\Models\Categorias;
 use App\Models\Localidades;
 use Illuminate\Http\Request;
 use App\Models\Establecimiento;
+use App\Models\State;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
@@ -22,9 +24,12 @@ class EstablecimientoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $categorias = Categorias::all();
-        $localidades = Localidades::all();
-        return view('establecimientos.index', compact('categorias','localidades'));
+        if(Auth::user()->tipo_users_id == 1){
+            $establecimientos = Establecimiento::all();
+            return view('admin.establecimientos', compact('establecimientos'));
+        }else{
+            abort(404);
+        }
     }
 
     /**
@@ -115,14 +120,15 @@ class EstablecimientoController extends Controller
      * @param  \App\Models\Establecimiento  $establecimiento
      * @return \Illuminate\Http\Response
      */
-    public function edit(Establecimiento $establecimiento)
-    {
-        if(!(Auth::user()->id == $establecimiento->users_id) || $establecimiento->states_id != 1){
+    public function edit(Establecimiento $establecimiento){
+        if(!(Auth::user()->id == $establecimiento->users_id || Auth::user()->tipo_users_id == 1) || (Auth::user()->tipo_users_id != 1 && $establecimiento->states_id != 1)){
             abort(404);
         }
+        $user = User::find($establecimiento->users_id);
+        $states = State::all();
         $categorias = Categorias::all();
         $localidades = Localidades::all();
-        return view('establecimientos.edit', compact('categorias','localidades', 'establecimiento'));
+        return view('establecimientos.edit', compact('categorias','localidades', 'establecimiento', 'user', 'states'));
     }
 
     /**
@@ -140,6 +146,10 @@ class EstablecimientoController extends Controller
             $establecimiento->save();
             return response()->json(['status'=>200] , 200);
         }else{
+
+            if(!(Auth::user()->id == $establecimiento->users_id || Auth::user()->tipo_users_id == 1) || (Auth::user()->tipo_users_id != 1 && $establecimiento->states_id != 1)){
+                abort(404);
+            }
             $validation = [];
             if( $request['users_id'] != $establecimiento->users_id ){
                 $validation['users_id'] = ['required'];
@@ -199,6 +209,10 @@ class EstablecimientoController extends Controller
                 $validation['horario'] = ['required'];
                 $establecimiento->horario = $request['horario'];
             }
+            if( $request['states_id'] != $establecimiento->states_id ){
+                $validation['states_id'] = ['required'];
+                $establecimiento->states_id = $request['states_id'];
+            }
     
             $request->validate($validation);
             $establecimiento->save();
@@ -211,6 +225,11 @@ class EstablecimientoController extends Controller
                 Image::make($file->getRealPath())->fit(400, 400)->save($ruta,72);
             }
     
+            if(Auth::user()->tipo_users_id == 1){
+                $establecimientos = Establecimiento::all();
+                return view('admin.establecimientos', compact('establecimientos'));
+            }
+
             return redirect()->route('home');
         }
     }

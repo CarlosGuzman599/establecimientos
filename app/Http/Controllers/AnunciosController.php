@@ -3,16 +3,14 @@
 namespace App\Http\Controllers;
 
 use Exception;
-use Carbon\Carbon;
 use App\Models\Tiempos;
 use App\Models\Anuncios;
+use App\Models\State;
 use Illuminate\Http\Request;
 use App\Models\Establecimiento;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Auth\Access\Response;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+
 
 
 class AnunciosController extends Controller
@@ -24,7 +22,12 @@ class AnunciosController extends Controller
      */
     public function index()
     {
-        //
+        if(Auth::user()->tipo_users_id == 1){
+            $anuncios = Anuncios::all();
+            return view('admin.anuncios', compact('anuncios'));
+        }else{
+            abort(404);
+        }
     }
 
     /**
@@ -113,13 +116,14 @@ class AnunciosController extends Controller
      */
     public function edit(Anuncios $anuncio){
 
-        if(!(Auth::user()->id == $anuncio->users_id)){
+        if(!(Auth::user()->id == $anuncio->users_id || Auth::user()->tipo_users_id == 1) || (Auth::user()->tipo_users_id != 1 && $anuncio->states_id != 1)){
             abort(404);
         }
 
         $tiempos = Tiempos::all();
+        $states = State::all();
         $establecimiento = Establecimiento::find($anuncio->establecimientos_id);
-        return view('anuncios.anuncio_establecimiento_edit', compact('tiempos', 'establecimiento', 'anuncio'));
+        return view('anuncios.anuncio_establecimiento_edit', compact('tiempos', 'establecimiento', 'anuncio', 'states'));
     }
 
     /**
@@ -139,7 +143,7 @@ class AnunciosController extends Controller
             $anuncio->save();
             return response()->json(['status'=>200] , 200);
         }else{
-            if(!(Auth::user()->id == $anuncio->users_id)){
+            if(!(Auth::user()->id == $anuncio->users_id || Auth::user()->tipo_users_id == 1) || (Auth::user()->tipo_users_id != 1 && $anuncio->states_id != 1)){
                 abort(404);
             }
     
@@ -162,6 +166,10 @@ class AnunciosController extends Controller
                 $file = $request->file('img');
                 $anuncio->img = '/storage/img/anuncios/'.$anuncio->id.".".$file->getClientOriginalExtension();
             }
+            if( $request['states_id'] != $anuncio->states_id ){
+                $validation['states_id'] = ['required'];
+                $anuncio->states_id = $request['states_id'];
+            }
     
             $request->validate($validation);
             $anuncio->save();
@@ -174,6 +182,11 @@ class AnunciosController extends Controller
                 Image::make($file->getRealPath())->fit(400, 400)->save($ruta,72);
             }
     
+            if(Auth::user()->tipo_users_id == 1){
+                $anuncios = Anuncios::all();
+                return view('admin.anuncios', compact('anuncios'));
+            }
+
             return redirect()->route('establecimiento.show', $request['establecimientos_id']);
         }        
     }

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\Localidades;
+use App\Models\State;
+
 
 class Establecimiento extends Model
 {
@@ -21,6 +23,7 @@ class Establecimiento extends Model
         'users_id',
         'categorias_id',
         'localidades_id',
+        'states_id',
         'logo',
         'protection',
         'delivery',
@@ -48,6 +51,10 @@ class Establecimiento extends Model
      */
     protected $casts = [
     ];
+
+    public function state(){
+        return $this->belongsTo(State::class, 'states_id', 'id');
+    }
 
     public function localidad(){
         return $this->belongsTo(Localidades::class, 'localidades_id', 'id');
