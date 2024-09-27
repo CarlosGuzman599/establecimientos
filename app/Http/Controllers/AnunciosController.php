@@ -135,9 +135,10 @@ class AnunciosController extends Controller
      */
     public function update(Request $request, Anuncios $anuncios)
     {
+        try{
+
+        
         $anuncio = Anuncios::find($request->id);
-
-
         if( $request->titulo == null){
             $anuncio->states_id = 2;
             $anuncio->save();
@@ -188,7 +189,12 @@ class AnunciosController extends Controller
             }
 
             return redirect()->route('establecimiento.show', $request['establecimientos_id']);
-        }        
+        }   
+        
+    }catch(Exception $e){
+        return $e;
+    }
+        
     }
 
     /**

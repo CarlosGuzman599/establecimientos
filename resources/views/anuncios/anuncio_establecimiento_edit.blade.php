@@ -158,7 +158,8 @@
                             @enderror
                         </div>
                     @else
-                    <button id="{{ $anuncio->id }}" class="col m-4 btn btn-danger btn-delete"><i class="fa-solid fa-triangle-exclamation"></i> Eliminar</button>
+                        <input type="hidden" name="states_id" id="states_id" value="1">
+                        <button id="{{ $anuncio->id }}" class="col m-4 btn btn-danger btn-delete"><i class="fa-solid fa-triangle-exclamation"></i> Eliminar</button>
                     @endif
                     <button type="submit" class="col m-4 btn btn-primary" value="update">Save</button>
                 </div>

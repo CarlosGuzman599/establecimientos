@@ -121,9 +121,14 @@ class EstablecimientoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Establecimiento $establecimiento){
-        if(!(Auth::user()->id == $establecimiento->users_id || Auth::user()->tipo_users_id == 1) || (Auth::user()->tipo_users_id != 1 && $establecimiento->states_id != 1)){
+        if(!(Auth::user() && ((Auth::user()->id == $establecimiento->users_id) || (Auth::user()->tipo_users_id == 1)))){
             abort(404);
         }
+
+        if(($establecimiento->states_id != 1 && Auth::user()->tipo_users_id != 1)){
+            abort(404);
+        }
+
         $user = User::find($establecimiento->users_id);
         $states = State::all();
         $categorias = Categorias::all();
@@ -140,16 +145,21 @@ class EstablecimientoController extends Controller
      */
     public function update(Request $request, $id){
 
+        try{
+
+        
+
         $establecimiento = Establecimiento::find($id);
+
+        if(!(Auth::user() && (Auth::user()->id == $establecimiento->users_id || Auth::user()->tipo_users_id == 1))){
+            abort(404);
+        }
+
         if(!(isset($request['users_id']))){
             $establecimiento->states_id = 2;
             $establecimiento->save();
-            return response()->json(['status'=>200] , 200);
         }else{
 
-            if(!(Auth::user()->id == $establecimiento->users_id || Auth::user()->tipo_users_id == 1) || (Auth::user()->tipo_users_id != 1 && $establecimiento->states_id != 1)){
-                abort(404);
-            }
             $validation = [];
             if( $request['users_id'] != $establecimiento->users_id ){
                 $validation['users_id'] = ['required'];
@@ -209,14 +219,16 @@ class EstablecimientoController extends Controller
                 $validation['horario'] = ['required'];
                 $establecimiento->horario = $request['horario'];
             }
-            if( $request['states_id'] != $establecimiento->states_id ){
-                $validation['states_id'] = ['required'];
-                $establecimiento->states_id = $request['states_id'];
+
+            if(isset($request['states_id'])){
+                if( $request['states_id'] != $establecimiento->states_id ){
+                    $establecimiento->states_id = $request['states_id'];
+                }
             }
-    
+
             $request->validate($validation);
             $establecimiento->save();
-    
+
             if( $request['logo'] != null ){
                 $file = $request->file('logo');
                 $newFileName = $id.".".$file->getClientOriginalExtension();
@@ -224,14 +236,23 @@ class EstablecimientoController extends Controller
                 $ruta=public_path($user);
                 Image::make($file->getRealPath())->fit(400, 400)->save($ruta,72);
             }
-    
+
             if(Auth::user()->tipo_users_id == 1){
                 $establecimientos = Establecimiento::all();
                 return view('admin.establecimientos', compact('establecimientos'));
             }
-
+    
             return redirect()->route('home');
+
+
         }
+
+
+    }catch(Exception $e){
+        return $e;
+    }
+
+
     }
 
     /**

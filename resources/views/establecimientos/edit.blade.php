@@ -362,6 +362,7 @@
                             @enderror
                         </div>
                     @else
+                        <input type="hidden" name="states_id" id="states_id" value="1">
                         <button id="{{ $establecimiento->id }}" class="col m-4 btn btn-danger btn-delete"><i class="fa-solid fa-triangle-exclamation"></i> Eliminar</button>
                     @endif
 

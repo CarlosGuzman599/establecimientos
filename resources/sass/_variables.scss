@@ -12,7 +12,7 @@ main{
 }
 
 :root{
-    --color-primary: #00d100;
+    --color-primary: #3fa33f;
     --color-ranita: #85dfab;
     --c-yellow: #f1c411;
     --ch-yellow: #f29c11;
@@ -187,12 +187,54 @@ html, body {
     font-style: italic!important;
 }
 
-.bussine-img{
-    width: 4em!important;
-    height: 4em!important;
-    margin: auto auto!important;
-}
 //^^^^^^^^^^^^^^^^^^^^^^^ GENERAL USE ^^^^^^^^^^^^^^^^^^^^^^^
+
+//vvvvvvvvvvvvvvvvvvvvvvv LOGIN vvvvvvvvvvvvvvvvvvvvvvv
+
+.contenedor-anuncio{
+    border:solid .5px rgb(211, 211, 211)!important;
+    border-radius: 30px;
+    margin: .3em;
+    padding: 0!important;
+    height: 18em;
+    background-color: white!important;
+}
+
+.img-anuncio{
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+    width: 100%!important;
+    height: 80%!important;
+    object-fit: cover;
+}
+
+.img-modal{
+    position: absolute;
+    width: 100%!important;
+    display: block;
+    margin: 0 auto!important;
+}
+
+.encabezado-anuncio{
+    position: absolute!important;
+    color: white!important;
+    display: flex;
+    text-shadow: -4px 6px 5px rgba(0,0,0,0.75);
+    line-height: 1;
+    z-index: 10;
+}
+
+.delivery-anuncio{
+    position: absolute!important;
+    text-shadow: -4px 6px 5px rgba(0,0,0,0.75);
+    z-index: 10;
+}
+
+.bold{
+    font-weight: bold!important;
+}
+
+//^^^^^^^^^^^^^^^^^^^^^^^ WELCOME ^^^^^^^^^^^^^^^^^^^^^^^
 
 //vvvvvvvvvvvvvvvvvvvvvvv LOGIN vvvvvvvvvvvvvvvvvvvvvvv
 .icon{
